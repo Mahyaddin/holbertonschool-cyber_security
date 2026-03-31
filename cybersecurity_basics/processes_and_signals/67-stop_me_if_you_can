@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Bu skript 7-highlander prosesini dayandirmaga calisir
+pkill -f 7-highlander
