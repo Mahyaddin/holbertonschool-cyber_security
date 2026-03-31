@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Manages the manage_my_process script with precise output handling
+# Manages the manage_my_process script with strict output and file paths
 
 case "$1" in
     start)
@@ -8,14 +8,15 @@ case "$1" in
         echo "manage_my_process started"
         ;;
     stop)
-        # Səssiz dayandırmaq və xətanı gizlətmək üçün
+        # Prosesi dayandırarkən yaranan bütün lüzumsuz mesajları gizlədirik
         pkill -f manage_my_process > /dev/null 2>&1
-        rm -f /var/run/my_process.pid
+        # Faylın silindiyindən əmin oluruq
+        rm -f /var/run/my_process.pid > /dev/null 2>&1
         echo "manage_my_process stopped"
         ;;
     restart)
         pkill -f manage_my_process > /dev/null 2>&1
-        rm -f /var/run/my_process.pid
+        rm -f /var/run/my_process.pid > /dev/null 2>&1
         ./manage_my_process > /dev/null 2>&1 &
         echo $! > /var/run/my_process.pid
         echo "manage_my_process restarted"
