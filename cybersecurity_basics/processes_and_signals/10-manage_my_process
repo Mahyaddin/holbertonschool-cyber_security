@@ -1,25 +1,22 @@
 #!/usr/bin/env bash
-# Manages manage_my_process script with total silence on background noise
+# Manages the manage_my_process script with strict output and /tmp/ paths
 
 case "$1" in
     start)
         ./manage_my_process > /dev/null 2>&1 &
-        echo $! > /var/run/my_process.pid
+        echo $! > /tmp/my_process.pid
         echo "manage_my_process started"
         ;;
     stop)
-        # 1. Prosesi dayandir və xətanı gizlət
         pkill -f manage_my_process > /dev/null 2>&1
-        # 2. PID faylını sil
-        rm -f /var/run/my_process.pid
-        # 3. YALNIZ tələb olunan mesajı çap et
+        rm -f /tmp/my_process.pid
         echo "manage_my_process stopped"
         ;;
     restart)
         pkill -f manage_my_process > /dev/null 2>&1
-        rm -f /var/run/my_process.pid
+        rm -f /tmp/my_process.pid
         ./manage_my_process > /dev/null 2>&1 &
-        echo $! > /var/run/my_process.pid
+        echo $! > /tmp/my_process.pid
         echo "manage_my_process restarted"
         ;;
     *)
