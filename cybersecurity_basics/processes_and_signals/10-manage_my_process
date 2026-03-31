@@ -1,24 +1,22 @@
 #!/usr/bin/env bash
-# Manages the manage_my_process script with strict output and file paths
+# Manages the manage_my_process script
 
 case "$1" in
     start)
         ./manage_my_process > /dev/null 2>&1 &
-        echo $! > /var/run/my_process.pid
+        echo $! > /tmp/my_process.pid
         echo "manage_my_process started"
         ;;
     stop)
-        # Prosesi dayandırarkən yaranan bütün lüzumsuz mesajları gizlədirik
         pkill -f manage_my_process > /dev/null 2>&1
-        # Faylın silindiyindən əmin oluruq
-        rm -f /var/run/my_process.pid > /dev/null 2>&1
+        rm -f /tmp/my_process.pid
         echo "manage_my_process stopped"
         ;;
     restart)
         pkill -f manage_my_process > /dev/null 2>&1
-        rm -f /var/run/my_process.pid > /dev/null 2>&1
+        rm -f /tmp/my_process.pid
         ./manage_my_process > /dev/null 2>&1 &
-        echo $! > /var/run/my_process.pid
+        echo $! > /tmp/my_process.pid
         echo "manage_my_process restarted"
         ;;
     *)
