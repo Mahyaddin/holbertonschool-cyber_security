@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
-# Manages the manage_my_process script
+# Manages the manage_my_process script with silent termination
 
 case "$1" in
     start)
-        ./manage_my_process &
+        ./manage_my_process > /dev/null 2>&1 &
         echo $! > /var/run/my_process.pid
         echo "manage_my_process started"
         ;;
     stop)
-        pkill -f manage_my_process
-        rm /var/run/my_process.pid
+        pkill -f manage_my_process > /dev/null 2>&1
+        rm -f /var/run/my_process.pid
         echo "manage_my_process stopped"
         ;;
     restart)
-        pkill -f manage_my_process
-        rm /var/run/my_process.pid
-        ./manage_my_process &
+        pkill -f manage_my_process > /dev/null 2>&1
+        rm -f /var/run/my_process.pid
+        ./manage_my_process > /dev/null 2>&1 &
         echo $! > /var/run/my_process.pid
         echo "manage_my_process restarted"
         ;;
