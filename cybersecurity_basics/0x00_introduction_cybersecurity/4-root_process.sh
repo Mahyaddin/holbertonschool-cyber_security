@@ -1,2 +1,2 @@
 #!/bin/bash
-ps -u "$1" -F | grep -v " 0      0 " | grep -v "PID"
+ps -u "$1" -F | grep -vE '([0-9]+ +0 +0 |VSZ +RSS)'
