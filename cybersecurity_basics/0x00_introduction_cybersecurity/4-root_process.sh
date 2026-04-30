@@ -1,2 +1,2 @@
 #!/bin/bash
-ps -u "$1" -F | grep -vE " (0|VSZ) +(0|RSS) "
+ps -u "$1" -F --no-headers | grep -v " 0      0 "
