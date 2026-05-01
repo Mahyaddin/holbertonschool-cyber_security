@@ -1,2 +1,2 @@
 #!/bin/bash
-ps -u "$1" aux | grep -vE '\s0\s+0\s'
+ps -u "$1" -ux | grep -vE 'COMMAND|\s0\s+0'
