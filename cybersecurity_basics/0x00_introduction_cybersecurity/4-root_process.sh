@@ -1,2 +1,2 @@
 #!/bin/bash
-ps -u "$1" -ux | grep -vE 'COMMAND|\s0\s+0'
+ps aux | grep "^$1 " | grep -v ' 0      0 '
