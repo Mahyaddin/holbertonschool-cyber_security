@@ -1,12 +1,2 @@
 #!/bin/bash
-echo "Include /etc/ssh/sshd_config.d/*.conf"
-echo "KbdInteractiveAuthentication no"
-echo "UsePAM yes"
-echo "X11Forwarding yes"
-echo "PrintMotd no"
-echo "AcceptEnv LANG LC_*"
-echo "Subsystem       sftp    /usr/lib/openssh/sftp-server"
-echo "PasswordAuthentication yes"
-echo "PermitRootLogin yes"
-echo "AuthorizedKeysFile .ssh/authorized_keys"
-echo "TCPKeepAlive yes"
+grep -E '^(Include|KbdInteractiveAuthentication|UsePAM|X11Forwarding|PrintMotd|AcceptEnv|Subsystem|PasswordAuthentication|PermitRootLogin|AuthorizedKeysFile|TCPKeepAlive)' /etc/ssh/sshd_config
