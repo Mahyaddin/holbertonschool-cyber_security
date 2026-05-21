@@ -1,0 +1,2 @@
+#!/bin/bash
+IFS=. read -r ip1 ip2 ip3 ip4 <<< "$1"; IFS=. read -r mk1 mk2 mk3 mk4 <<< "$2"; printf "%d.%d.%d.%d" $((ip1 | (~mk1 & 255))) $((ip2 | (~mk2 & 255))) $((ip3 | (~mk3 & 255))) $((ip4 | (~mk4 & 255)))
