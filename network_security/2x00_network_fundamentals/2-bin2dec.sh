@@ -1,2 +1,3 @@
 #!/bin/bash
-echo "$((2#$1))"
+binary=$1
+echo "ibase=2; $binary" | bc
