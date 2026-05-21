@@ -1,0 +1,2 @@
+#!/bin/bash
+IFS=. read -r i1 i2 i3 i4 <<< "$1"; cidr=$2; mask=$(( 0xFFFFFFFF << (32 - cidr) )); ip_num=$(( (i1 << 24) | (i2 << 16) | (i3 << 8) | i4 )); net_id=$(( ip_num & mask )); bc_addr=$(( net_id | (~mask & 0xFFFFFFFF) )); f_ip=$(( net_id + 1 )); l_ip=$(( bc_addr - 1 )); printf "%d.%d.%d.%d - %d.%d.%d.%d" $(( (f_ip >> 24) & 255 )) $(( (f_ip >> 16) & 255 )) $(( (f_ip >> 8) & 255 )) $(( f_ip & 255 )) $(( (l_ip >> 24) & 255 )) $(( (l_ip >> 16) & 255 )) $(( (l_ip >> 8) & 255 )) $(( l_ip & 255 ))
