@@ -1,2 +1,2 @@
 #!/bin/bash
-find "$1" -type f -mtime -1 -perm /6000 -exec ls -ld {} +
+find "$1" -type f -mtime -1 \( -perm -u=s -o -perm -g=s \) -exec ls -ld {} +
