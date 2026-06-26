@@ -1,2 +1,0 @@
-#!/bin/bash
-curl -s -H "Host: web0x00.hbtn" $1
