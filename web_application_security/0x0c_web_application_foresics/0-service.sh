@@ -1,2 +1,4 @@
 #!/bin/bash
-grep -oE '[a-zA-Z0-9_]+(\[[0-9]+\])?:' $1 | sort | uniq -c | sort -nr
+# Scans auth.log and reports the service used by the attackers
+# to gain access to the system.
+grep "sshd" auth.log | awk '{print $6}' | sort | uniq -c | sort -rn
